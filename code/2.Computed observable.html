@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>KnockoutJS</title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/knockoutjs/dist/knockout.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Knockout JS</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="jumbotron">
+        <h2>Computed observable example</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" data-bind="value:firstName" class="form-control"/>
+                <input type="text" data-bind="value:lastName" class="form-control"/>
+                <p>
+                    My name is: <span type="text" data-bind="text:fullName"/>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var viewModel = {
+        firstName: ko.observable('John'),
+        lastName: ko.observable('Sheppard')
+    };
+
+    viewModel.fullName = ko.computed(function () {
+        return this.firstName() + ' ' + this.lastName();
+    }, viewModel);
+
+    ko.applyBindings(viewModel);
+</script>
+</body>
+</html>

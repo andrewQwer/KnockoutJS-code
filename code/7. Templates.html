@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>KnockoutJS</title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/knockoutjs/dist/knockout.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Knockout JS</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="jumbotron">
+        <h2>Template example</h2>
+        <div data-bind="template: {name: 'myTemplate'}">
+
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="myTemplate">
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" data-bind="value:firstName, valueUpdate: 'afterkeydown'" class="form-control"/>
+            <p>
+                My name is: <span type="text" data-bind="text:firstName"/>
+            </p>
+            <p>
+                I am <span data-bind="text: age"></span> years old.
+            </p>
+        </div>
+    </div>
+</script>
+
+<script type="text/javascript">
+    var viewModel = {
+        firstName: ko.observable("John"),
+        age: ko.observable(25)
+    };
+    ko.applyBindings(viewModel);
+</script>
+</body>
+</html>

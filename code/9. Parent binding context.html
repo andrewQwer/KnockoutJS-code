@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>KnockoutJS</title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/knockoutjs/dist/knockout.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Knockout JS</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="jumbotron">
+        <h2>Parent binding context example</h2>
+
+        <div data-bind="template: {name: 'myTemplate', foreach:items}">
+
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="myTemplate">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-2">
+                    <span data-bind="text:name"></span>
+                </div>
+                <div class="col-md-6">
+                    <input type="button" data-bind="click: $parent.remove" class="btn btn-danger btn-xs" value="x"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/javascript">
+    var viewModel = {
+        items: ko.observableArray([
+            {name: 'John'},
+            {name: 'Martin'},
+            {name: 'Peter'}
+        ])
+    };
+    viewModel.remove = function (item) {
+        viewModel.items.remove(item);
+    }
+
+    ko.applyBindings(viewModel);
+</script>
+</body>
+</html>
